@@ -4,9 +4,8 @@ public class Basket {
     private double totalWeight = 0;
     private int limit;
 
-    public Basket (int totalPriceLimit) {
-
-        limit = totalPriceLimit;
+    public Basket (int limit) {
+        this.limit = limit;
     }
 
     public void add (String name, int price, double Weight) {
