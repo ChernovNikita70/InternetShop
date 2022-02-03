@@ -1,43 +1,40 @@
 public class Basket {
-    private static String items = "";
-    private static int totalPrice = 0;
-    private static double totalWeight = 0;
+    private String items = "";
+    private int totalPrice = 0;
+    private double totalWeight = 0;
+    private int limit;
 
-    public static void main (String[] args){
-        add ("Колбаса",76, 300);
-        add ("Мясо", 300, 200);
-        add ("Молоко", 120, 200);
-        print ("Содержимое корзины:");
-        System.out.println ("Общая стоимость товаров - " + getTotalPrice() + " рублей");
-        System.out.println ("Общая масса товаров - " + getTotalWeight() + " грамм");
-        clear();
-        System.out.println ("Общая масса товаров - " + getTotalWeight() + " грамм");
-        System.out.println ("Общая стоимость товаров - " + getTotalPrice() + " рублей");
-        print("Содержимое корзины:");
+    public Basket (int totalPriceLimit) {
+
+        limit = totalPriceLimit;
     }
-    public static void add (String name, int price, double Weight) {
+
+    public void add (String name, int price, double Weight) {
         if (contains(name)){
+            return;
+        }
+        if (totalPrice + price >= limit){
             return;
         }
         items = items + "\n" + name + "-" + price + " рублей " + Weight + " грамм";
         totalPrice = totalPrice + price;
         totalWeight = totalWeight + Weight;
     }
-    public static boolean contains (String name) {
+    public boolean contains (String name) {
         return items.contains (name);
     }
-    public static void clear () {
+    public void clear () {
         items = "";
         totalPrice = 0;
         totalWeight = 0;
     }
-    public static int getTotalPrice () {
+    public int getTotalPrice () {
         return totalPrice;
     }
-    public static double getTotalWeight (){
+    public double getTotalWeight (){
         return totalWeight;
     }
-    public static void print (String tittle) {
+    public void print (String tittle) {
         System.out.println(tittle);
         if (items.isEmpty()) {
             System.out.println("Корзина пуста");
@@ -46,3 +43,4 @@ public class Basket {
         }
     }
 }
+
